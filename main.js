@@ -61,7 +61,7 @@ for (let i = 0; i < images.length; i++) {
 
     <div class="carousel-container mb-5 ">
         <div class="position-relative carousel-image">
-            <<img class="w-100 active " src="${images[i].url}" alt=""> 
+            <img class="w-100 carousel-img" src="${images[i].url}" alt=""> 
             <div class="image-text position-absolute top-0 start-50 p-2 text-end">
                 <h2>${images[i].title}</h2>
                 <h4>${images[i].description}</h4> 
@@ -75,5 +75,11 @@ for (let i = 0; i < images.length; i++) {
         </div>
     `
 }
+
+carouselImage.innerHTML = item;
+document.getElementsByClassName('carousel-image')[active].classList.add('active');
+
+thumbImage.innerHTML += thumb;
+document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
 
 
