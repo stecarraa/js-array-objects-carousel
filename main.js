@@ -1,4 +1,4 @@
-Consegna:
+// Consegna:
 // Dato un array di oggetti letterali con:
 // url dell’immagine
 // titolo
@@ -49,84 +49,31 @@ const images = [
     },
 ];
 
-// immagine da cui voglio partire nell'array
-let activeElementIndex = 0;
+const carouselImage = document.getElementsByClassName('carousel-image')[0];
+const thumbImage = document.getElementsByClassName('thumbnail-section')[0];
+let item = '';
+let thumb = '';
+let active = 1;
 
+for (let i = 0; i < images.length; i++) {
+    item += `
+    <div class="col-12">
 
-// mi vado a prendere dove visualizzare le img nel dome
-const imgsWrapper = document.querySelector('.carousel-container');
-const imgList = imgsWrapper.children;
-
-
-
-
-
-for(index = 0 ; index < givenImages.length ; index++){
-    // creo l'elemento html di tipo img
-const newImg = document.createElement('img');
-
-// aggiungo le classi che voglio che questo abbia
-newImg.classList.add('w-100', 'rounded');
-
-// cambio l'src dell'immagine => .setAttribute(quale attributo, contenuto dell'attributo)
-newImg.setAttribute('src', givenImages[index]);
-
-//  aggiungo l'immagine creata alla lista
-imgsWrapper.append(newImg);
-
-imgList[activeElementIndex].classList.add('active');
+    <div class="carousel-container mb-5 ">
+        <div class="position-relative carousel-image">
+            <<img class="w-100 active " src="${images[i].url}" alt=""> 
+            <div class="image-text position-absolute top-0 start-50 p-2 text-end">
+                <h2>${images[i].title}</h2>
+                <h4>${images[i].description}</h4> 
+            </div>
+        </div>
+        
+    </div>`
+    thumb += `
+        <div class="thumbnail-section d-flex justify-content-between position-relative">
+            <img class="w-5" src="${images[i].url}" alt="">
+        </div>
+    `
 }
 
 
-
-
-
-
-
-
-
-
-// | prendo il bottone "next"
-const btnNext = document.getElementById('next-button');
-
-btnNext.addEventListener('click', nextImage);
-
-const btnPre = document.getElementById('prev-button')
-
-btnPre.addEventListener('click', prevImage);
-
-function nextImage(){
-    imgList[activeElementIndex].classList.remove('active');
-   
-    // ? scorro di un posto l'elemento attivo
-    activeElementIndex++;
-
-    //  se siamo alla fine dell'array, non uscire ma ricomincia dal primo elemento della lista.
-    if (activeElementIndex === imgList.length){
-        activeElementIndex = 0;
-    }
-
-    // aggiungo la classe active al nuovo elemento attivo
-    imgList[activeElementIndex].classList.add('active');
-
-    console.log('Cliccato! L\'elemento adesso attivo è in posizione: ' + activeElementIndex);
-}
-
-function prevImage(){
-    imgList[activeElementIndex].classList.remove('active');
-   
-    // ? scorro di un posto l'elemento attivo
-    activeElementIndex--;
-
-    //  se siamo alla fine dell'array, non uscire ma ricomincia dal primo elemento della lista.
-    if (activeElementIndex === -1){
-        activeElementIndex = imgList.length - 1;
-    }
-
-    // aggiungo la classe active al nuovo elemento attivo
-    imgList[activeElementIndex].classList.add('active');
-
-    console.log('Cliccato! L\'elemento adesso attivo è in posizione: ' + activeElementIndex);
-}
-
-const timer = setInterval(nextImage, 3000);

@@ -1,4 +1,4 @@
-img{
+.carousel-img{
     /* display: none; */
     width: 100%;
     height: 100%;
@@ -6,7 +6,7 @@ img{
     border-radius: .5%;
 }
 .w-5{
-    max-width: 20%;
+    width: calc((1100px) / 5);
 }
 
 
