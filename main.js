@@ -70,16 +70,62 @@ for (let i = 0; i < images.length; i++) {
         
     </div>`
     thumb += `
-        <div class="thumbnail-section d-flex justify-content-between position-relative">
+        <div class="thumbnail-section d-flex justify-content-between">
             <img class="w-5" src="${images[i].url}" alt="">
         </div>
     `
 }
 
 carouselImage.innerHTML = item;
-document.getElementsByClassName('carousel-image')[active].classList.add('active');
+document.getElementsByClassName('carousel-img')[active].classList.add('active');
 
 thumbImage.innerHTML += thumb;
 document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
 
+// | prendo il bottone "next"
+const btnNext = document.getElementById('next-button');
 
+
+
+const btnPre = document.getElementById('prev-button')
+
+
+
+
+btnPre.addEventListener('click', function() {
+    if(active == 0) {                                                                   
+        active = images.length - 1; 
+
+        document.querySelector('.carousel-img.active').classList.remove('active');
+        document.getElementsByClassName('carousel-img')[active].classList.add('active');
+
+        document.querySelector('.thumbnail-section.active').classList.remove('active');
+        document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
+    } else if(active < images.length) {
+        --active
+        document.querySelector('.carousel-img.active').classList.remove('active');
+        document.getElementsByClassName('carousel-img')[active].classList.add('active');
+
+        document.querySelector('.thumbnail-section.active').classList.remove('active');
+        document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
+    } 
+});
+
+
+btnNext.addEventListener('click', function() {
+    if(active < images.length - 1) {
+        ++active
+        document.querySelector('.carousel-img.active').classList.remove('active');
+        document.getElementsByClassName('carousel-img')[active].classList.add('active');
+
+        document.querySelector('.thumbnail-section.active').classList.remove('active');
+        document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
+    } else if(active == images.length - 1) { 
+        active = 0;
+        document.querySelector('.carousel-img.active').classList.remove('active');
+        document.getElementsByClassName('carousel-img')[active].classList.add('active');
+
+        document.querySelector('.thumbnail-section.active').classList.remove('active');
+        document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
+    }
+});
