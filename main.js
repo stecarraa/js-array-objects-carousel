@@ -129,3 +129,5 @@ btnNext.addEventListener('click', function() {
         document.getElementsByClassName('thumbnail-section')[active].classList.add('active');
     }
 });
+
+    const timer = setInterval(btnPre, 3000);
